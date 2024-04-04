@@ -1,0 +1,133 @@
+<html lang="en">
+
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+        <title>Pickle Predictor</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='flask_style.css') }}">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="static/pickle_favicon.ico">
+
+    </head>
+
+
+    <body>
+
+        <h1>Who will win?</h1>
+
+        <p id="sub-heading">Make selections below and see who will win!</p>
+
+        <div class="user-inputs">
+
+            <div class="player">
+                <img src="static/becca.png" class="light-up">
+                <div class="paddles">
+                  <img src="static/gay.jpeg" class="light-up">
+                  <img src="static/straight.webp" class="light-up">
+                </div>
+              </div>
+            
+              <!-- Second main image with two smaller images below -->
+              <div class="player">
+                <img src="static/julianna.jpg" class="light-up">
+                <div class="paddles">
+                  <img src="static/gay.jpeg" class="light-up">
+                  <img src="static/straight.webp" class="light-up">
+                </div>
+              </div>
+            
+            <div class="location-grid">
+                <img class="light-up" src="static/cienaga.png" alt="La Cienaga Tennis Club">
+                <img class="light-up" src="static/plummer.jpeg" alt="Plummer Park">
+                <img class="light-up" src="static/roxbury.jpeg" alt="Roxbury Tennis Club">
+                <img class="light-up" src="static/weho.jpeg" alt="West Hollywood Rec Center">
+            </div>
+            
+            <div>
+                <input type="time" id="court-start-time" name="court-start-time" min="00:00" max="24:00"/>
+            </div>
+
+            <div class="slider">
+                <input type="range" id="game-session-num" min="1" max="5" value="1" onchange="updateTextInput(this.value);">
+                <div id="game-session-num-input"></div>
+            </div>
+
+            <div>
+                <select id="game-length">
+                    <option value="short">Short</option>
+                    <option value="medium">Medium</option>
+                    <option value="long">Long</option>
+                </select>
+            </div>
+
+            <div>
+                <button onclick="sendValue()">Predict Winner</button>
+            </div>
+
+        </div>
+    
+        <p id="data"></p>
+
+        <script>
+            // Image opacity change
+            var images = document.querySelectorAll(".light-up");
+
+            // Add click event listener to each image
+            images.forEach(function(image) {
+                image.addEventListener("click", function() {
+                    // Check current opacity
+                    var currentOpacity = parseFloat(image.style.opacity)
+                
+                    // Toggle opacity (change it to 0.5 if it's currently 1, otherwise change it to 1)
+                    image.style.opacity = currentOpacity === 1 ? 0.5 : 1;
+                });
+            });
+            
+            // slider output
+            var slider = document.getElementById("game-session-num");
+            var output = document.getElementById("game-session-num-input");
+            output.innerHTML = slider.value; // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider handle)
+            slider.oninput = function() {
+            output.innerHTML = this.value;
+            };
+
+            function sendValue() {
+                var dropdown = document.getElementById("game-length");
+                var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+                fetch('/pickleball-predictor/show_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ value: selectedValue })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    var result = data;
+
+                    document.getElementById("data").textContent = result;
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                });
+            }
+        </script>
+
+    </body>
+
+
+</html>
