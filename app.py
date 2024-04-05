@@ -26,7 +26,7 @@ def authenticate():
 
 @app.route('/pickleball-predictor')
 def pickleball_predictor():
-    return render_template('flask_index.html')
+    return render_template('landing_page.html')
 
 @app.route('/pickleball-predictor/show_data', methods=['POST'])
 def show_data():
