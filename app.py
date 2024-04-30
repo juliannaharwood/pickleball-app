@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, json, redirect, url_for
-from backend import train
+from backend import utils
 import pandas as pd
 
 app = Flask(__name__, static_url_path='/static')
@@ -30,13 +30,13 @@ def pickleball_predictor():
 
 @app.route('/pickleball-predictor/show_data', methods=['POST'])
 def show_data():
-    pickle_raw = train.load_data()
-    pickle_clean = train.clean_data(pickle_raw)
-    pickle_clean = train.feature_engineer(pickle_clean)
+    pickle_raw = utils.load_data()
+    pickle_clean = utils.clean_data(pickle_raw)
+    pickle_clean = utils.feature_engineer(pickle_clean)
     data = request.get_json()
     selected_value = data['value']
     # Process the selected value as needed
-    final_data = train.get_data(pickle_clean, selected_value)
+    final_data = utils.get_data(pickle_clean, selected_value)
     print(final_data)
     return jsonify(str(final_data))
 

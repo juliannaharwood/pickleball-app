@@ -1,35 +1,43 @@
-import pandas as pd
-import numpy as np
+from backend.utils import load_data, clean_data, feature_engineer, create_test_train
 
-def load_data():
-    # Load data from CSV file into a DataFrame
-    pickle_raw = pd.read_csv('backend/data/Pickleball - Sheet1.csv', header = None)
-    return(pickle_raw)
+# Modeling
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
+from sklearn.model_selection import RandomizedSearchCV, train_test_split
+from scipy.stats import randint
+from sklearn import preprocessing
 
-def clean_data(pickle_raw):
-    # clean header
-    header = pickle_raw.iloc[1]
-    pickle_clean = pickle_raw.iloc[2:]
-    pickle_clean.columns = header
+# Tree Visualisation
+from sklearn.tree import export_graphviz
+from IPython.display import Image
+import graphviz
 
-    # Define datetime columns
-    pickle_clean['Court Time'] = pd.to_datetime(pickle_clean['Court Time'])
-    pickle_clean['Game End Times'] = pd.to_datetime(pickle_clean['Game End Times'])
-    return(pickle_clean)
+# load data
+pickle_raw = load_data('backend/data/Pickleball - Sheet1.csv')
 
-def feature_engineer(pickle_clean):
-    # Create game length variable
-    pickle_clean['Game Length'] = pickle_clean.groupby(['Date'])['Game End Times'].diff().fillna(pickle_clean['Game End Times'] - pickle_clean['Court Time'])
-    return(pickle_clean)
+# clean data
+pickle_clean = clean_data(pickle_raw)
 
-def get_data(pickle_clean, game_length):
-    sorted = pickle_clean.sort_values(by='Game Length')
-    game_lengths = sorted['Game Length']
-    if game_length == "short":
-        return("Shortest game was", str(game_lengths.iloc[0]))
-    elif game_length == "medium":
-        return("Average game length is", str(np.mean(game_lengths)))
-    elif game_length == "long":
-        return("Longest game was", str(game_lengths.iloc[-1]))
+# create features
+pickle = feature_engineer(pickle_clean)
 
+# create test/train data
+X_train, X_test, y_train, y_test = create_test_train(pickle)
 
+rf = RandomForestClassifier()
+rf.fit(X_train, y_train)
+y_pred = rf.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+for i in range(3):
+    tree = rf.estimators_[i]
+    dot_data = export_graphviz(tree,
+                            #    feature_names=pickle.columns,  
+                               filled=True,  
+                               max_depth=2, 
+                               impurity=False, 
+                               proportion=True)
+    graph = graphviz.Source(dot_data)
+    display(graph)
