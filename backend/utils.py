@@ -29,6 +29,14 @@ def clean_data(data):
                                         'Game End Times': 'game_end_times',
                                         'Game #':'game_num'})
 
+    # Fill nas for empty partners and incomplete
+    clean_data.Player_A_2 = clean_data.Player_A_2.fillna("None")
+    clean_data.Player_B_2 = clean_data.Player_B_2.fillna("None")
+    clean_data.Incomplete = clean_data.Incomplete.fillna("Complete")
+
+    # Drop any rows with missing data
+    clean_data = clean_data.dropna()
+
     # Set datatypes
     clean_data = clean_data.astype({'Day':str, 'Park':str, 'Court':str, 'game_num':str, 'Player_A_1':str,
                             'Player_A_2':str, 'Player_B_1':str, 'Player_B_2':str, 'Start_1':str,

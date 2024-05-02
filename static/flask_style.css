@@ -120,3 +120,11 @@
   .slider:hover {
     opacity: 1; /* Fully shown on mouse-over */
   }
+  
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; /* Optional: to center the label and input horizontally */
+    margin-bottom: 10px; /* Optional: to add some space between the label and the input */
+  }
+

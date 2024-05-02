@@ -25,47 +25,57 @@
         <p id="sub-heading">Make selections below and see who will win!</p>
 
         <div class="user-inputs">
-
-            <div class="player">
-                <img src="static/images/becca.png" class="light-up">
-                <div class="paddles">
-                  <img src="static/images/gay.jpeg" class="light-up">
-                  <img src="static/images/straight.webp" class="light-up">
+            <div class="start-and-partners">
+                <p id="start-instructions">Choose who will start and our partners</p>
+                <div class="player">
+                    <img src="static/images/becca.png" class="light-up">
+                    <div class="partners">
+                        <img src="static/images/tori.jpg" class="light-up">
+                        <img src="static/images/alex.jpg" class="light-up">
+                        <img src="static/images/taylor.jpg" class="light-up">
+                    </div>
                 </div>
-              </div>
             
               <!-- Second main image with two smaller images below -->
-              <div class="player">
-                <img src="static/images/julianna.jpg" class="light-up">
-                <div class="paddles">
+                <div class="player">
+                    <img src="static/images/julianna.jpg" class="light-up">
+                    <div class="partners">
+                        <img src="static/images/tori.jpg" class="light-up">
+                        <img src="static/images/alex.jpg" class="light-up">
+                        <img src="static/images/taylor.jpg" class="light-up">
+                    </div>
+                <!-- <div class="paddles">
                   <img src="static/images/gay.jpeg" class="light-up">
                   <img src="static/images/straight.webp" class="light-up">
+                </div> -->
                 </div>
-              </div>
-            
-            <div class="location-grid">
+            </div>
+            <!-- <div class="location-grid">
                 <img class="light-up" src="static/images/cienaga.png" alt="La Cienaga Tennis Club">
                 <img class="light-up" src="static/images/plummer.jpeg" alt="Plummer Park">
                 <img class="light-up" src="static/images/roxbury.jpeg" alt="Roxbury Tennis Club">
                 <img class="light-up" src="static/images/weho.jpeg" alt="West Hollywood Rec Center">
-            </div>
+            </div> -->
             
-            <div>
+            <!-- <div>
                 <input type="time" id="court-start-time" name="court-start-time" min="00:00" max="24:00"/>
-            </div>
+            </div> -->
 
             <div class="slider">
-                <input type="range" id="game-session-num" min="1" max="5" value="1" onchange="updateTextInput(this.value);">
+                <div class="input-wrapper">
+                    <label for="game-session-num">Select what number game this is in the session</label>
+                    <input type="range" id="game-session-num" min="1" max="5" value="1" onchange="updateTextInput(this.value);">
+                </div>
                 <div id="game-session-num-input"></div>
-            </div>
+            </div>            
 
-            <div>
+            <!-- <div>
                 <select id="game-length">
                     <option value="short">Short</option>
                     <option value="medium">Medium</option>
                     <option value="long">Long</option>
                 </select>
-            </div>
+            </div> -->
 
             <div>
                 <button onclick="sendValue()">Predict Winner</button>
