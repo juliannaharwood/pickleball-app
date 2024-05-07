@@ -1,19 +1,21 @@
-from backend.utils import load_data, clean_data, feature_engineer, create_test_train
+from backend.utils import load_data, clean_data, feature_engineer
 
 # Modeling
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
-from sklearn.model_selection import RandomizedSearchCV, train_test_split
+from sklearn.model_selection import RandomizedSearchCV, train_test_split, GridSearchCV
 from scipy.stats import randint
 from sklearn import preprocessing
+from sklearn.tree import plot_tree
 
 # Tree Visualisation
 from sklearn.tree import export_graphviz
 from IPython.display import Image
 import graphviz
+import matplotlib.pyplot as plt
 
 # load data
-pickle_raw = load_data('backend/data/Pickleball - Sheet1.csv')
+pickle_raw = load_data(path = 'data/Pickleball - Sheet1.csv')
 
 # clean data
 pickle_clean = clean_data(pickle_raw)

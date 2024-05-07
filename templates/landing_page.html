@@ -35,26 +35,28 @@
             <img id="julianna-serve" src="static/images/pickleball-small.png" style="display: none;">
 
             <div id="becca-partners">
-                <img src="static/images/tori.png" class="light-up"/>
-                <img src="static/images/alex.png" class="light-up"/>
-                <img src="static/images/taylor2.png" class="light-up"/>
+                <img src="static/images/tori.png" id="tori" class="light-up"/>
+                <img src="static/images/alex.png" id="alex" class="light-up"/>
+                <img src="static/images/taylor2.png" id="taylor" class="light-up"/>
             </div>
             
             <div id="julianna-partners">
-                <img src="static/images/tori.png" class="light-up"/>
-                <img src="static/images/alex.png" class="light-up"/>
-                <img src="static/images/taylor2.png" class="light-up"/>
+                <img src="static/images/tori.png" id="tori" class="light-up"/>
+                <img src="static/images/alex.png" id="alex" class="light-up"/>
+                <img src="static/images/taylor2.png" id="taylor" class="light-up"/>
             </div>
 
             <div class="input-wrapper">
                 <label for="game-session-num">Select what number game this is in the session</label>
                 <div class="slider">
-                    <input type="range" id="game-session-num" min="1" max="5" value="1" onchange="updateTextInput(this.value);">
+                    <input type="range" id="game-session-num" min="1" max="5" value="1">
                     <div id="game-session-num-input"></div>
                 </div>
             </div>
 
-            <button id="predict" onclick="sendValue()">Predict Winner</button> 
+            <button id="predict" onclick="predict()">Predict Winner</button> 
+
+            <div id="response-placeholder"></div>
         
         </div>
 
@@ -83,13 +85,19 @@
             // Add click event listener to each image
             becca_images.forEach(function(image) {
                 image.addEventListener("click", function() {
-                    // Reset opacity for all images
+                    // Toggle opacity between .5 and 1 for the clicked image
+                    var currentOpacity = parseFloat(image.style.opacity);
+                    image.style.opacity = (currentOpacity === 1) ? 0.4 : 1;
+
+                    // Get the ID of the clicked image
+                    var clickedImageId = image.id;
+
+                    // Set opacity to 0.5 for all images except the clicked one
                     becca_images.forEach(function(img) {
-                         img.style.opacity = 0.5;
+                        if (img.id !== clickedImageId) {
+                            img.style.opacity = 0.4;
+                        }
                     });
-                
-                    // Set opacity to 1 for the clicked image
-                    image.style.opacity = 1;
                 });
             });
 
@@ -99,13 +107,21 @@
             // Add click event listener to each image
             julianna_images.forEach(function(image) {
                 image.addEventListener("click", function() {
-                    // Reset opacity for all images
+                    
+                    // Toggle opacity between .5 and 1 for the clicked image
+                    var currentOpacity = parseFloat(image.style.opacity);
+                    image.style.opacity = (currentOpacity === 1) ? 0.4 : 1;
+
+                    // Get the ID of the clicked image
+                    var clickedImageId = image.id;
+
+                    // Set opacity to 0.5 for all images except the clicked one
                     julianna_images.forEach(function(img) {
-                         img.style.opacity = 0.5;
+                        if (img.id !== clickedImageId) {
+                            img.style.opacity = 0.4;
+                        }
                     });
-                
-                    // Set opacity to 1 for the clicked image
-                    image.style.opacity = 1;
+
                 });
             });
             
@@ -119,29 +135,58 @@
             output.innerHTML = this.value;
             };
 
-            function sendValue() {
-                var dropdown = document.getElementById("game-length");
-                var selectedValue = dropdown.options[dropdown.selectedIndex].value;
-                fetch('/pickleball-predictor/show_data', {
+            function predict() {
+                // Get the ID of becca partner
+                var beccaPartnerID = "";
+                var beccaPartner = document.querySelector("#becca-partners .light-up[style='opacity: 1;']");
+                if (beccaPartner) {
+                    beccaPartnerID = beccaPartner.id;
+                }
+
+                // Get the ID of the lit up image
+                var juliannaPartnerID = "";
+                var juliannaPartner = document.querySelector("#julianna-partners .light-up[style='opacity: 1;']");
+                if (juliannaPartner) {
+                    juliannaPartnerID = juliannaPartner.id;
+                }
+
+                // Get the ID of the displayed popup
+                var serve = "";
+                var beccaServe = document.getElementById("becca-serve");
+                var juliannaServe = document.getElementById("julianna-serve");
+                if (beccaServe.style.display === "block") {
+                    serve = "becca";
+                } else if (juliannaServe.style.display === "block") {
+                    serve = "julianna";
+                }
+
+                // Get the value of the slider
+                var gameNum = document.getElementById("game-session-num").value;
+
+                // Send the information to the Flask app
+                fetch('/predict', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ value: selectedValue })
-                })
-                .then(response => {
+                    body: JSON.stringify({ 
+                        becca_partner: beccaPartnerID, 
+                        julianna_partner: juliannaPartnerID, 
+                        serve: serve,
+                        game_num: gameNum
+                    })
+                }).then(response => {
                     if (response.ok) {
-                        return response.text();
+                        return response.json(); // Parse response as JSON
+                    } else {
+                        throw new Error('Failed to send information.');
                     }
-                    throw new Error('Network response was not ok.');
-                })
-                .then(data => {
-                    var result = data;
-
-                    document.getElementById("data").textContent = result;
-                })
-                .catch(error => {
-                    console.error('There was a problem with your fetch operation:', error);
+                }).then(data => {
+                    // Display response message
+                    var responsePlaceholder = document.getElementById("response-placeholder");
+                    responsePlaceholder.textContent = data.message;
+                }).catch(error => {
+                    console.error("Error:", error);
                 });
             }
         </script>

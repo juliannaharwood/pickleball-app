@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify, json, redirect, url_for
 from backend import utils
-import pandas as pd
+from backend import run_prediction
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -28,17 +28,15 @@ def authenticate():
 def pickleball_predictor():
     return render_template('landing_page.html')
 
-@app.route('/pickleball-predictor/show_data', methods=['POST'])
-def show_data():
-    pickle_raw = utils.load_data()
-    pickle_clean = utils.clean_data(pickle_raw)
-    pickle_clean = utils.feature_engineer(pickle_clean)
-    data = request.get_json()
-    selected_value = data['value']
-    # Process the selected value as needed
-    final_data = utils.get_data(pickle_clean, selected_value)
-    print(final_data)
-    return jsonify(str(final_data))
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.json
+    response = run_prediction.predict_from_model('backend/models/rf.joblib', data)
+    if response :
+        result = 'becca wins'
+    else :
+        result = 'julianna wins'
+    return jsonify({'message': result})
 
 if __name__ == '__main__':
     app.run(debug=True)

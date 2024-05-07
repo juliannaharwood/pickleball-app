@@ -1,16 +1,5 @@
-import pandas as pd
 import numpy as np
-
-# Modeling
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
-from sklearn.model_selection import RandomizedSearchCV, train_test_split
-from scipy.stats import randint
-from sklearn import preprocessing
-
-# Tree Visualisation
-from sklearn.tree import export_graphviz
-from IPython.display import Image
+import pandas as pd
 
 def load_data(path):
     # Load data from CSV file into a DataFrame
@@ -84,19 +73,6 @@ def feature_engineer(data):
     data = data.drop(['Date','game_end_times','Start_1','Start_2','Score_1','Score_2','Incomplete'], axis = 1)
 
     return(data)
-
-def create_test_train(data):
-    X = data.drop('becca_win', axis=1)
-    y = data['becca_win']
-
-    # create one hot encodings for string vars
-    oh = preprocessing.OneHotEncoder()
-    X_oh = oh.fit_transform(X)
-
-    # Split the data into training and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X_oh, y, test_size=0.2)
-
-    return X_train, X_test, y_train, y_test
 
 def get_data(pickle_clean, game_length):
     sorted = pickle_clean.sort_values(by='Game Length')
