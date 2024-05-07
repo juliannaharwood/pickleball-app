@@ -63,25 +63,49 @@
             
             // add serve pickleball on click
             document.getElementById("becca").addEventListener("click", function() {
-                document.getElementById("becca-serve").style.display = "block";
-            });
-            
-            // add serve pickleball on click
-            document.getElementById("julianna").addEventListener("click", function() {
-                document.getElementById("julianna-serve").style.display = "block";
+                var beccaPopup = document.getElementById("becca-serve");
+                var juliannaPopup = document.getElementById("julianna-serve");
+                beccaPopup.style.display = (beccaPopup.style.display === "none") ? "block" : "none";
+                juliannaPopup.style.display = "none";
             });
 
-            // Image opacity change
-            var images = document.querySelectorAll(".light-up");
+            document.getElementById("julianna").addEventListener("click", function() {
+                var juliannaPopup = document.getElementById("julianna-serve");
+                var beccaPopup = document.getElementById("becca-serve");
+                juliannaPopup.style.display = (juliannaPopup.style.display === "none") ? "block" : "none";
+                beccaPopup.style.display = "none";
+            });
+
+
+            // Image opacity change for becca partners
+            var becca_images = document.querySelectorAll("#becca-partners .light-up");
 
             // Add click event listener to each image
-            images.forEach(function(image) {
+            becca_images.forEach(function(image) {
                 image.addEventListener("click", function() {
-                    // Check current opacity
-                    var currentOpacity = parseFloat(image.style.opacity)
+                    // Reset opacity for all images
+                    becca_images.forEach(function(img) {
+                         img.style.opacity = 0.5;
+                    });
                 
-                    // Toggle opacity (change it to 0.5 if it's currently 1, otherwise change it to 1)
-                    image.style.opacity = currentOpacity === 1 ? 0.5 : 1;
+                    // Set opacity to 1 for the clicked image
+                    image.style.opacity = 1;
+                });
+            });
+
+            // Image opacity change for julianna partners
+            var julianna_images = document.querySelectorAll("#julianna-partners .light-up");
+
+            // Add click event listener to each image
+            julianna_images.forEach(function(image) {
+                image.addEventListener("click", function() {
+                    // Reset opacity for all images
+                    julianna_images.forEach(function(img) {
+                         img.style.opacity = 0.5;
+                    });
+                
+                    // Set opacity to 1 for the clicked image
+                    image.style.opacity = 1;
                 });
             });
             
