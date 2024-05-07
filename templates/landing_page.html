@@ -20,72 +20,57 @@
 
     <body>
 
-        <h1>Hi Taylor</h1>
+        <div id="side-image-left"></div>
+        <div id="side-image-right"></div>
 
-        <p id="sub-heading">Make selections below and see who will win!</p>
+        <div class="container">
+            <h1>Pickle Predictor</h1>
+            <!-- <p id="sub-heading">Make selections below and see who will win!</p> -->
+            <p id="start-instructions">Click on partners and who starts</p>
 
-        <div class="user-inputs">
-            <div class="start-and-partners">
-                <p id="start-instructions">Choose who will start and our partners</p>
-                <div class="player">
-                    <img src="static/images/becca.png" class="light-up">
-                    <div class="partners">
-                        <img src="static/images/tori.jpg" class="light-up">
-                        <img src="static/images/alex.jpg" class="light-up">
-                        <img src="static/images/taylor.jpg" class="light-up">
-                    </div>
-                </div>
-            
-              <!-- Second main image with two smaller images below -->
-                <div class="player">
-                    <img src="static/images/julianna.jpg" class="light-up">
-                    <div class="partners">
-                        <img src="static/images/tori.jpg" class="light-up">
-                        <img src="static/images/alex.jpg" class="light-up">
-                        <img src="static/images/taylor.jpg" class="light-up">
-                    </div>
-                <!-- <div class="paddles">
-                  <img src="static/images/gay.jpeg" class="light-up">
-                  <img src="static/images/straight.webp" class="light-up">
-                </div> -->
-                </div>
+            <img id="becca" src="static/images/becca4.png"/>
+            <img id="julianna" src="static/images/julianna.png"/>
+
+            <img id="becca-serve" src="static/images/pickleball-small.png" style="display: none;">
+            <img id="julianna-serve" src="static/images/pickleball-small.png" style="display: none;">
+
+            <div id="becca-partners">
+                <img src="static/images/tori.png" class="light-up"/>
+                <img src="static/images/alex.png" class="light-up"/>
+                <img src="static/images/taylor2.png" class="light-up"/>
             </div>
-            <!-- <div class="location-grid">
-                <img class="light-up" src="static/images/cienaga.png" alt="La Cienaga Tennis Club">
-                <img class="light-up" src="static/images/plummer.jpeg" alt="Plummer Park">
-                <img class="light-up" src="static/images/roxbury.jpeg" alt="Roxbury Tennis Club">
-                <img class="light-up" src="static/images/weho.jpeg" alt="West Hollywood Rec Center">
-            </div> -->
             
-            <!-- <div>
-                <input type="time" id="court-start-time" name="court-start-time" min="00:00" max="24:00"/>
-            </div> -->
+            <div id="julianna-partners">
+                <img src="static/images/tori.png" class="light-up"/>
+                <img src="static/images/alex.png" class="light-up"/>
+                <img src="static/images/taylor2.png" class="light-up"/>
+            </div>
 
-            <div class="slider">
-                <div class="input-wrapper">
-                    <label for="game-session-num">Select what number game this is in the session</label>
+            <div class="input-wrapper">
+                <label for="game-session-num">Select what number game this is in the session</label>
+                <div class="slider">
                     <input type="range" id="game-session-num" min="1" max="5" value="1" onchange="updateTextInput(this.value);">
+                    <div id="game-session-num-input"></div>
                 </div>
-                <div id="game-session-num-input"></div>
-            </div>            
-
-            <!-- <div>
-                <select id="game-length">
-                    <option value="short">Short</option>
-                    <option value="medium">Medium</option>
-                    <option value="long">Long</option>
-                </select>
-            </div> -->
-
-            <div>
-                <button onclick="sendValue()">Predict Winner</button>
             </div>
 
+            <button id="predict" onclick="sendValue()">Predict Winner</button> 
+        
         </div>
-    
-        <p id="data"></p>
+
 
         <script>
+            
+            // add serve pickleball on click
+            document.getElementById("becca").addEventListener("click", function() {
+                document.getElementById("becca-serve").style.display = "block";
+            });
+            
+            // add serve pickleball on click
+            document.getElementById("julianna").addEventListener("click", function() {
+                document.getElementById("julianna-serve").style.display = "block";
+            });
+
             // Image opacity change
             var images = document.querySelectorAll(".light-up");
 

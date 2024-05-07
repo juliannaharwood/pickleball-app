@@ -1,130 +1,183 @@
-
-  
-  #welcome {
-    margin-right: 40px;
-  }
-  
-  html,
-  /* body { */
-    /* margin: 0; */
-    /* display: flex; */
-    /* justify-content: center;
-    flex-direction: column;
+  /* Page styling */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    font-family: "Roboto Mono", monospace; 
-    display : flex;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important; */
-    /* background-color: rgb(236, 232, 105); */
-  /* } */
-  
-  h1 {
-      margin-right: 20px;
-      margin-top: 50px;
-      font-size: 24px;
-    }
-  
-  p {
-      color: rgb(25, 57, 97);
-      margin-left: 40px;
-  }
-  
-  a {
-    margin: 25px;
-    font-family: inherit;
-    display:inline-block;
-  }
-  
-  a:link { text-decoration: none;
-    color: rgb(25, 57, 97); }
-  
-  
-  a:visited { text-decoration: none;
-    color: rgb(25, 57, 97); }
-  
-  
-  a:hover { text-decoration: none;
-    color: rgb(25, 57, 97); }
-  
-  
-  a:active { text-decoration: none;
-    color: rgb(25, 57, 97); }
-  
-  button {
-      /* margin: 25px; */
-      font-family: inherit;
-      display : flex;
-      /* justify-content: center !important;
-      align-items: center !important;
-      text-align: center !important; */
-    }
-    /* End of Page styling */
-  
-  /* user input styling */
-  .user-inputs {
-    width: 80%; /* Set the width of the container */
-    margin: 0 auto; /* Center the container horizontally */
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Space elements evenly */
-  }
-
-  /* image styling */
-  img {
-    height: 100px;
-    opacity: 0.7;
-    /* display: flex; */
-    max-width: 100px;
-    /* width: 100px; */
-  }
-  
-  img:hover { 
-    opacity: 1; 
-  }
-
-  /* player and paddle styling */
-  .player {
-    display: flex;
-    flex-direction: column; /* Arrange items vertically */
-    gap: 10px;
-  }
-  
-  .paddles {
-    display: flex;
-    justify-content: space-between; /* Space small images evenly */
-    gap: 10px;
-  }
-
-  /* location selector styling */ 
-  .location-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
-    /* display: flex; */
-    gap: 10px; /* Gap between images */
-  }
-
-  /* court start time styling */
-
-  /* game session num styling */
-  .slider {
-    display: flex;
-    /* width: 100%; */
-    height: 25px;
-    outline: none;
-    opacity: 0.7;
-    transition: opacity .2s;
-  }
-
-  .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
-  
-  .input-wrapper {
-    display: flex;
     flex-direction: column;
-    /* align-items: center; /* Optional: to center the label and input horizontally */
-    margin-bottom: 10px; /* Optional: to add some space between the label and the input */
-  }
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scrollbar due to side images */
+    /* font-family: "Roboto Mono", monospace; */
+    background-color: rgba(200, 223, 88, 0.803);
+}
 
+#side-image-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background-image: url("images/pickleball.png"); /* Set the left image */
+  background-repeat: repeat; /* Repeat the image vertically */
+  background-size: 100px; /* Adjust the size of the pickleball image */
+  animation: movePickleballs 20s linear infinite;
+}
+
+#side-image-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100%;
+  background-image: url("images/pickleball.png"); /* Set the right image */
+  background-repeat: repeat; /* Repeat the image vertically */
+  background-size: 100px; /* Adjust the size of the pickleball image */
+  animation: movePickleballs 20s linear infinite;
+}
+
+@keyframes movePickleballs {
+  0% {
+      background-position: 0 0;
+  }
+  100% {
+      background-position: 100% 100%; /* Adjust the end position for the background */
+  }
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+  color:rgb(235, 73, 73)
+}
+
+p {
+  color: #38b649;
+  margin: 0;
+  font-weight: 900;
+}
+
+#start-instructions {
+  margin-left: 30px;
+  font-weight: 900;
+}
+
+.container {
+    background-image: url("images/court.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 100vh;
+    width: 50%;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* padding: 20px; */
+    background-color: rgba(200, 223, 88, 0.803);
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* margin-top: 20px; */
+    position: relative; /* Set position to relative */
+}
+
+#becca {
+  height: 150px;
+  width: 150px;
+  position: absolute; /* Position the image absolutely */
+  top: 20%; /* Align to the top */
+  right: 27%; /* Align to the right */
+}
+
+#becca-serve {
+  height: 30px;
+  width: 30px;
+  position: absolute; /* Position the image absolutely */
+  top: 25%; /* Align to the top */
+  right: 35%; /* Align to the right */
+}
+
+#julianna {
+  height: 100px;
+  width: 100px;
+  position: absolute; /* Position the image absolutely */
+  top: 65%; /* Align to the top */
+  left: 30%; /* Align to the right */
+}
+
+#julianna-serve {
+  height: 30px;
+  width: 30px;
+  position: absolute; /* Position the image absolutely */
+  top: 70%; /* Align to the top */
+  left: 35%; /* Align to the right */
+}
+
+#becca-partners {
+  display: flex;
+  position: absolute; /* Position the image absolutely */
+  top: 36%; /* Align to the top */
+  right: 13%; /* Align to the right */
+  height: 75px;
+  /* justify-content: space-between; */
+}
+
+#julianna-partners {
+  display: flex;
+  position: absolute; /* Position the image absolutely */
+  top: 53%; /* Align to the top */
+  left: 15%; /* Align to the right */
+  height: 75px;
+  /* justify-content: space-between; */
+}
+
+/* Image styling */
+.light-up {
+    /* height: 100px; */
+    opacity: 0.7;
+    max-width: 100px;
+    margin: 5px 5px 5px;
+}
+
+.light-up:hover {
+    opacity: 1;
+}
+
+/* Game num input styling */
+.input-wrapper {
+  display: flex;
+  /* align-items: center; */
+  margin: 30px;
+  width: 200px;
+  flex-direction: column; /* Arrange items vertically */
+}
+
+.slider {
+  display: flex;
+}
+
+/* Predict Winner button styling */
+#predict {
+    font-family: inherit;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    position: absolute; /* Position the image absolutely */
+    bottom: 6%;
+    right: 35%;
+}
+
+#predict:hover {
+    background-color: #45a049;
+}
