@@ -28,6 +28,16 @@
             <!-- <p id="sub-heading">Make selections below and see who will win!</p> -->
             <p id="start-instructions">Click on partners and who starts</p>
 
+            <div class="input-wrapper">
+                <label for="game-session-num">Select what number game this is in the session</label>
+                <div class="slider">
+                    <input type="range" id="game-session-num" min="1" max="5" value="1">
+                    <div id="game-session-num-input"></div>
+                </div>
+            </div>
+
+            <button id="predict" onclick="predict()">Predict Winner</button> 
+
             <img id="becca" src="static/images/becca4.png"/>
             <img id="julianna" src="static/images/julianna.png"/>
 
@@ -45,16 +55,6 @@
                 <img src="static/images/alex.png" id="alex" class="light-up"/>
                 <img src="static/images/taylor2.png" id="taylor" class="light-up"/>
             </div>
-
-            <div class="input-wrapper">
-                <label for="game-session-num">Select what number game this is in the session</label>
-                <div class="slider">
-                    <input type="range" id="game-session-num" min="1" max="5" value="1">
-                    <div id="game-session-num-input"></div>
-                </div>
-            </div>
-
-            <button id="predict" onclick="predict()">Predict Winner</button> 
 
             <div id="response-placeholder"></div>
         
