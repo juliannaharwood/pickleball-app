@@ -8,7 +8,7 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden; /* Prevent horizontal scrollbar due to side images */
-    /* font-family: "Roboto Mono", monospace; */
+    font-family: 'Freeman';
     background-color: rgba(200, 223, 88, 0.803);
 }
 
@@ -69,7 +69,7 @@ p {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     min-height: 100vh;
-    width: 50%;
+    width: 60%;
     height: 100%;
     max-width: 1200px;
     position: relative; /* Set position to relative */
@@ -139,36 +139,70 @@ p {
 
 /* Game num input styling */
 .input-wrapper {
-  display: flex;
-  /* align-items: center; */
-  margin: 30px;
-  width: 200px;
-  flex-direction: column; /* Arrange items vertically */
+  margin-left: 30px;
+  width: 100px;
 }
 
 .slider {
   display: flex;
+  margin-top: 10px;
+}
+.slider input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: rgb(196, 196, 196); /* White background color for the slider bar */
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+/* Style the slider thumb (circle) */
+.slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #38b649; /* Green background color for the slider thumb */
+  cursor: pointer;
+}
+
+.slider input[type="range"]:hover {
+  opacity: 1;
 }
 
 /* Predict Winner button styling */
+.predict-button {
+  margin: 0;
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 #predict {
     font-family: inherit;
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #4CAF50;
+    background-color: #38b649;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    display: flex;
-    position: absolute; /* Position the image absolutely */
-    bottom: 6%;
-    right: 35%;
 }
 
 #predict:hover {
     background-color: #45a049;
+}
+
+/* Add a CSS class for the button when it's clicked */
+.button-clicked {
+  transform: translateY(3px); /* Adjust the amount of indentation */
 }
 
 /* Adjustments for mobile responsiveness */
@@ -201,11 +235,15 @@ p {
   }
 
   .input-wrapper {
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-left: 0px;
     text-align: center;
     align-items: center;
     position: absolute;
-    right: 18%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 200px;
   }
 
   #start-instructions {
@@ -213,7 +251,7 @@ p {
     margin-top: 20px;
     margin-left: 0px;
     margin-right: 0px;
-  }
+  } 
   
   #becca {
     top: 30%; /* Align to the top */
@@ -247,9 +285,9 @@ p {
     left: 33%; /* Align to the right */
   }
 
-  #predict {
-    bottom: 20%;
-    right: 31%;
+  .predict-button {
+    top: 70%;
+    left: 50%;
   }
 
 }

@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='flask_style.css') }}">
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" />
+        <link href='https://fonts.googleapis.com/css?family=Freeman' rel='stylesheet'>
         <link rel="icon" type="image/x-icon" href="static/pickleball-small.ico">
 
     </head>
@@ -35,8 +35,10 @@
                     <div id="game-session-num-input"></div>
                 </div>
             </div>
-
-            <button id="predict" onclick="predict()">Predict Winner</button> 
+            
+            <div class="predict-button">
+                <button id="predict" onclick="predict()">Predict Winner</button> 
+            </div>
 
             <img id="becca" src="static/images/becca4.png"/>
             <img id="julianna" src="static/images/julianna.png"/>
@@ -135,6 +137,21 @@
             output.innerHTML = this.value;
             };
 
+            // Get the button element
+            var predictButton = document.getElementById("predict");
+
+            // Add a click event listener to the button
+            predictButton.addEventListener("click", function() {
+            // Add the CSS class to the button when it's clicked
+            predictButton.classList.add("button-clicked");
+
+            // Remove the CSS class after a short delay to restore the original appearance
+            setTimeout(function() {
+                predictButton.classList.remove("button-clicked");
+            }, 100); // Adjust the delay (in milliseconds) as needed
+});
+
+
             function predict() {
                 // Get the ID of becca partner
                 var beccaPartnerID = "";
@@ -185,10 +202,15 @@
                     // Display response message
                     var responsePlaceholder = document.getElementById("response-placeholder");
                     responsePlaceholder.textContent = data.message;
+
+                    // Trigger explosion of pickles
+                    explodePickles();
+
                 }).catch(error => {
                     console.error("Error:", error);
                 });
             }
+
         </script>
 
     </body>
