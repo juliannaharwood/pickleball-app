@@ -93,10 +93,7 @@ Send2Trash==1.8.0
 six==1.16.0
 # sklearn==0.0.post5
 sniffio==1.3.0
-snowflake-connector-python==2.9.0
-snowflake-sqlalchemy==1.4.7
 soupsieve==2.3.2.post1
-SQLAlchemy==1.4.48
 stack-data==0.6.2
 terminado==0.17.1
 threadpoolctl==3.1.0
