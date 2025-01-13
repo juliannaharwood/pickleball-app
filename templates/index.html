@@ -8,9 +8,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
-        <!-- <title>Julianna Harwood</title> -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" />
@@ -21,83 +18,11 @@
 
     <body>
 
-        <!-- <h1>Hey Becca</h1> -->
-        
-        <!-- <div id="welcome">
-        <p>Welcome! Thank you for checking out my work samples.</p>
-        </div> -->
-        
-        <!-- <div id="buttons">
-            
-            <a id="code_button" type="button" class="fill" href="#code-modal">w/ code</a>
-
-            <a id="no_code_button" type="button" class="fill" href="#no-code-modal">w/o code</a>
-
-        </div>
-
-        <div class="links-container">
-            <a id="resume" href="{{ url_for('static', filename='content/Julianna Harwood Resume.pdf') }}" target="_blank">Resume</a>
-            <a id="linkedin" href="https://www.linkedin.com/in/juliannaharwood/"target="_blank">LinkedIn</a>
-        </div>
-
-        <img id="comic" src="{{ url_for('static', filename='images/comic.png') }}"> -->
-
         <form action="/authenticate" method="post">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password">
             <input type="submit" value="Submit">
         </form>
-        
-        <!-- <div id="code-modal" class="modal">
-            <div class="modal__content">
-                
-                <button id="delta_method" type="button" class="slide">
-                    <div>AB Testing with the Delta Method for Relative Difference</div>
-                    <i class="icon-arrow-right"></i>
-                </button>
-
-                <button id="box_office" type="button" class="slide">
-                    <div>Predicting Box Office Revenue</div>
-                    <i class="icon-arrow-right"></i>
-                </button>
-
-                <button id="email_conversion" type="button" class="slide">
-                    <div>Analysis of Marketing Email Conversions</div>
-                    <i class="icon-arrow-right"></i>
-                </button>
-
-                <button id="cars" type="button" class="slide">
-                    <div>Car Recognition and Classification w/ Tensorflow</div>
-                    <i class="icon-arrow-right"></i>
-                </button>
-        
-                <a href="#" class="modal__close">&times;</a>
-            </div>
-        </div>
-
-        <div id="no-code-modal" class="modal">
-            <div class="modal__content">
-                
-                <button id="cuped" type="button" class="slide">
-                    <div>Using CUPED to Reduce Experiment Runtime</div>
-                    <i class="icon-arrow-right"></i>
-                </button>
-
-                <button id="education" type="button" class="slide">
-                    <div>How do we learn physics?</div>
-                    <i class="icon-arrow-right"></i>
-                </button>
-
-                <button id="traffic" type="button" class="slide">
-                    <div>Analysis of Traffic Stops by Race & Gender of Driver</div>
-                    <i class="icon-arrow-right"></i>
-                </button>
-        
-                <a href="#" class="modal__close">&times;</a>
-            </div>
-        </div> -->
-
-
 
     </body>
 

@@ -24,18 +24,24 @@ def authenticate():
         # Redirect back to the login page with a message if the password is incorrect
         return redirect(url_for('index'))
 
+# main page
 @app.route('/pickleball-predictor')
 def pickleball_predictor():
-    return render_template('landing_page.html')
+    return render_template('main.html')
 
+# predict winner
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
     response = run_prediction.predict_from_model('backend/models/rf.joblib', data)
-    if response :
-        result = 'becca wins'
+
+    if response == True:
+        result = 'Becca wins!'
+    elif response == False:
+        result = 'Julianna wins!'
     else :
-        result = 'julianna wins'
+        result = response
+
     return jsonify({'message': result})
 
 if __name__ == '__main__':

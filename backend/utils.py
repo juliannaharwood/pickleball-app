@@ -35,7 +35,7 @@ def clean_data(data):
     # Define datetime columns
     clean_data.court_time = pd.to_datetime(clean_data.court_time)
     clean_data.game_end_times = pd.to_datetime(clean_data.game_end_times)
-    clean_data.Date = pd.to_datetime(clean_data.Date)
+    clean_data.Date = pd.to_datetime(clean_data.Date, format='mixed')
 
     # Remove white space from strings
     clean_data.Player_A_1 = clean_data.Player_A_1.apply(lambda x: x.strip())
@@ -73,15 +73,5 @@ def feature_engineer(data):
     data = data.drop(['Date','game_end_times','Start_1','Start_2','Score_1','Score_2','Incomplete'], axis = 1)
 
     return(data)
-
-def get_data(pickle_clean, game_length):
-    sorted = pickle_clean.sort_values(by='Game Length')
-    game_lengths = sorted['Game Length']
-    if game_length == "short":
-        return("Shortest game was", str(game_lengths.iloc[0]))
-    elif game_length == "medium":
-        return("Average game length is", str(np.mean(game_lengths)))
-    elif game_length == "long":
-        return("Longest game was", str(game_lengths.iloc[-1]))
 
 

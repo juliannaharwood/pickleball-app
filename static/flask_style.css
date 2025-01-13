@@ -79,16 +79,16 @@ p {
   height: 150px;
   width: 150px;
   position: absolute; /* Position the image absolutely */
-  top: 20%; /* Align to the top */
-  right: 27%; /* Align to the right */
+  top: 15%; /* Align to the top */
+  right: 30%; /* Align to the right */
 }
 
 #becca-serve {
   height: 30px;
   width: 30px;
   position: absolute; /* Position the image absolutely */
-  top: 25%; /* Align to the top */
-  right: 35%; /* Align to the right */
+  top: 18%; /* Align to the top */
+  right: 38%; /* Align to the right */
 }
 
 #julianna {
@@ -110,8 +110,8 @@ p {
 #becca-partners {
   display: flex;
   position: absolute; /* Position the image absolutely */
-  top: 36%; /* Align to the top */
-  right: 13%; /* Align to the right */
+  top: 33%; /* Align to the top */
+  right: 18%; /* Align to the right */
   height: 75px;
   /* justify-content: space-between; */
 }
@@ -198,6 +198,52 @@ p {
 
 #predict:hover {
     background-color: #45a049;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  position: relative; /* Ensure children are positioned relative to the modal */
+  background-color: rgb(38, 185, 218);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 7px;
+  border: 1px solid #060606;
+  width: 10%; 
+  text-align: center;
+  font-size: 24px; /* Large text */
+  border-radius: 15px; /* Rounded edges */
+}
+
+.modal-content p {
+  color:rgb(250, 250, 250)
+}
+
+.close-button {
+  position: absolute; /* Position relative to .modal-content */
+  top: 0px; /* Distance from the top of the modal */
+  right: 7px; /* Distance from the right edge of the modal */
+  color: #000000;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Add a CSS class for the button when it's clicked */
