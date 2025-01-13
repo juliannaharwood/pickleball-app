@@ -3,3 +3,4 @@ numpy==2.2.1
 joblib==1.4.2
 pandas==2.2.3
 flask
+gunicorn==21.2.0
