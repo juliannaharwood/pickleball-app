@@ -6,8 +6,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
         <title>Pickle Predictor</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='flask_style.css') }}">
         
@@ -26,7 +24,7 @@
         <div class="container">
             <h1>Pickle Predictor</h1>
             <!-- <p id="sub-heading">Make selections below and see who will win!</p> -->
-            <p id="start-instructions">Click on Julianna or Becca to decide who serves first.<br>Select partners to play doubles or leave empty for singles.</p>
+            <p id="start-instructions">Select partners to play doubles or leave empty for singles.</p>
 
             <div class="input-wrapper">
                 <label for="game-session-num">Select what number game this is in the session</label>
@@ -35,27 +33,35 @@
                     <div id="game-session-num-input"></div>
                 </div>
             </div>
+
+            <div class="input-wrapper">
+                <label for="server-select">Select who serves first:</label>
+                <select id="server-select">
+                    <option value="becca">Becca</option>
+                    <option value="julianna">Julianna</option>
+                </select>
+            </div>
             
             <div class="predict-button">
                 <button id="predict" onclick="predict()">Predict Winner</button> 
             </div>
 
-            <img id="becca" src="static/images/becca4.png"/>
-            <img id="julianna" src="static/images/julianna.png"/>
+            <img id="becca" src="static/images/becca4.png" class="player"/>
+            <img id="julianna" src="static/images/julianna.png" class="player"/>
 
             <img id="becca-serve" src="static/images/pickleball-small.png" style="display: none;">
             <img id="julianna-serve" src="static/images/pickleball-small.png" style="display: none;">
 
-            <div id="becca-partners">
-                <img src="static/images/tori.png" id="tori" class="light-up"/>
-                <img src="static/images/alex.png" id="alex" class="light-up"/>
-                <img src="static/images/taylor2.png" id="taylor" class="light-up"/>
+            <div id="becca-partners" class="triangle-layout">
+                <img src="static/images/tori.png" id="tori_becca" class="player light-up"/>
+                <img src="static/images/alex.png" id="alex_becca" class="player light-up"/>
+                <img src="static/images/taylor2.png" id="taylor_becca" class="player light-up"/>
             </div>
             
-            <div id="julianna-partners">
-                <img src="static/images/tori.png" id="tori" class="light-up"/>
-                <img src="static/images/alex.png" id="alex" class="light-up"/>
-                <img src="static/images/taylor2.png" id="taylor" class="light-up"/>
+            <div id="julianna-partners" class="triangle-layout">
+                <img src="static/images/tori.png" id="tori_julianna" class="player light-up"/>
+                <img src="static/images/alex.png" id="alex_julianna" class="player light-up"/>
+                <img src="static/images/taylor2.png" id="taylor_julianna" class="player light-up"/>
             </div>
 
             <div id="winnerPopUp" class="modal">
@@ -69,28 +75,14 @@
 
 
         <script>
-            
-            // add serve pickleball on click
-            document.getElementById("becca").addEventListener("click", function() {
-                var beccaPopup = document.getElementById("becca-serve");
-                var juliannaPopup = document.getElementById("julianna-serve");
-                beccaPopup.style.display = (beccaPopup.style.display === "none") ? "block" : "none";
-                juliannaPopup.style.display = "none";
-            });
+            // Partner selection
 
-            document.getElementById("julianna").addEventListener("click", function() {
-                var juliannaPopup = document.getElementById("julianna-serve");
-                var beccaPopup = document.getElementById("becca-serve");
-                juliannaPopup.style.display = (juliannaPopup.style.display === "none") ? "block" : "none";
-                beccaPopup.style.display = "none";
-            });
-
-
-            // Image opacity change for becca partners
-            var becca_images = document.querySelectorAll("#becca-partners .light-up");
+            // Image opacity change 
+            var becca_partner_images = document.querySelectorAll("#becca-partners .light-up");
+            var julianna_partner_images = document.querySelectorAll("#julianna-partners .light-up");
 
             // Add click event listener to each image
-            becca_images.forEach(function(image) {
+            julianna_partner_images.forEach(function(image) {
                 image.addEventListener("click", function() {
                     // Toggle opacity between .5 and 1 for the clicked image
                     var currentOpacity = parseFloat(image.style.opacity);
@@ -100,7 +92,7 @@
                     var clickedImageId = image.id;
 
                     // Set opacity to 0.5 for all images except the clicked one
-                    becca_images.forEach(function(img) {
+                    julianna_partner_images.forEach(function(img) {
                         if (img.id !== clickedImageId) {
                             img.style.opacity = 0.4;
                         }
@@ -108,13 +100,8 @@
                 });
             });
 
-            // Image opacity change for julianna partners
-            var julianna_images = document.querySelectorAll("#julianna-partners .light-up");
-
-            // Add click event listener to each image
-            julianna_images.forEach(function(image) {
+            becca_partner_images.forEach(function(image) {
                 image.addEventListener("click", function() {
-                    
                     // Toggle opacity between .5 and 1 for the clicked image
                     var currentOpacity = parseFloat(image.style.opacity);
                     image.style.opacity = (currentOpacity === 1) ? 0.4 : 1;
@@ -123,16 +110,16 @@
                     var clickedImageId = image.id;
 
                     // Set opacity to 0.5 for all images except the clicked one
-                    julianna_images.forEach(function(img) {
+                    becca_partner_images.forEach(function(img) {
                         if (img.id !== clickedImageId) {
                             img.style.opacity = 0.4;
                         }
                     });
-
                 });
             });
-            
-            // slider output
+
+            // Game Num Slider 
+
             var slider = document.getElementById("game-session-num");
             var output = document.getElementById("game-session-num-input");
             output.innerHTML = slider.value; // Display the default slider value
@@ -142,7 +129,8 @@
             output.innerHTML = this.value;
             };
 
-            // Get the button element
+            // Predict Button
+
             var predictButton = document.getElementById("predict");
 
             // Add a click event listener to the button
@@ -151,40 +139,33 @@
                 // Add the CSS class to the button when it's clicked
                 predictButton.classList.add("button-clicked");
 
-                // Remove the CSS class after a short delay to restore the original appearance
+                // Remove the CSS class after a short delay
                 setTimeout(function() {
                     predictButton.classList.remove("button-clicked");
                 }, 100); // Adjust the delay (in milliseconds) as needed
             
             });
 
-
+            // Main prediction function
             function predict() {
-                // Get the ID of becca partner
+                // Get the ID of becca's partner (lit up image)
                 var beccaPartnerID = "";
                 var beccaPartner = document.querySelector("#becca-partners .light-up[style='opacity: 1;']");
                 if (beccaPartner) {
                     beccaPartnerID = beccaPartner.id;
                 }
 
-                // Get the ID of the lit up image
+                // Get the ID of julianna's partner (lit up image)
                 var juliannaPartnerID = "";
                 var juliannaPartner = document.querySelector("#julianna-partners .light-up[style='opacity: 1;']");
                 if (juliannaPartner) {
                     juliannaPartnerID = juliannaPartner.id;
                 }
 
-                // Get the ID of the displayed popup
-                var serve = "";
-                var beccaServe = document.getElementById("becca-serve");
-                var juliannaServe = document.getElementById("julianna-serve");
-                if (beccaServe.style.display === "block") {
-                    serve = "becca";
-                } else if (juliannaServe.style.display === "block") {
-                    serve = "julianna";
-                }
+                // Get first server
+                var serve = document.getElementById("server-select").value;
 
-                // Get the value of the slider
+                // Get game num
                 var gameNum = document.getElementById("game-session-num").value;
 
                 // Send the information to the Flask app
@@ -213,6 +194,7 @@
                 });
             }
             
+            // Modal to show results
             function showWinner(text) {
                 document.getElementById('winnerText').innerText = text; // Set the text
                 document.getElementById('winnerPopUp').style.display = 'block'; // Show the modal

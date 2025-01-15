@@ -1,4 +1,4 @@
-  /* Page styling */
+  /* General Page styling */
 body {
     margin: 0;
     display: flex;
@@ -11,6 +11,22 @@ body {
     font-family: 'Freeman';
     background-color: rgba(200, 223, 88, 0.803);
 }
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+  color:rgb(235, 73, 73)
+}
+
+p {
+  color: #38b649;
+  font-weight: 900;
+}
+
+/* Background */
 
 #side-image-left {
   position: absolute;
@@ -45,19 +61,7 @@ body {
   }
 }
 
-h1 {
-  font-size: 50px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  margin-top: 30px;
-  font-weight: bold;
-  color:rgb(235, 73, 73)
-}
-
-p {
-  color: #38b649;
-  font-weight: 900;
-}
+/* Main Components */
 
 #start-instructions {
   margin-left: 30px;
@@ -75,43 +79,80 @@ p {
     position: relative; /* Set position to relative */
 }
 
+/* Players */
+
 #becca {
   height: 150px;
-  width: 150px;
+  /* width: 150px; */
   position: absolute; /* Position the image absolutely */
   top: 15%; /* Align to the top */
   right: 30%; /* Align to the right */
 }
 
-#becca-serve {
-  height: 30px;
-  width: 30px;
-  position: absolute; /* Position the image absolutely */
-  top: 18%; /* Align to the top */
-  right: 38%; /* Align to the right */
-}
-
 #julianna {
-  height: 100px;
-  width: 100px;
+  height: 175px;
+  /* width: 100px; */
   position: absolute; /* Position the image absolutely */
-  top: 65%; /* Align to the top */
-  left: 30%; /* Align to the right */
+  top: 60%; /* Align to the top */
+  left: 28%; /* Align to the right */
 }
 
-#julianna-serve {
-  height: 30px;
-  width: 30px;
-  position: absolute; /* Position the image absolutely */
-  top: 70%; /* Align to the top */
-  left: 35%; /* Align to the right */
+/* Partners */
+
+#taylor_julianna {
+  height: 120px;
+  top: 0; /* Top image */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center the image */
+}
+
+#tori_julianna {
+  height: 120px;
+  bottom: 0; /* Bottom image */
+  left: 0; /* Align to the left */
+}
+
+#alex_julianna {
+  height: 90px;
+  bottom: 20%; /* Bottom image */
+  right: -15%; /* Align to the right */
+}
+
+#taylor_becca {
+  height: 120px;
+  top: 50%; /* Top image */
+  left: 25%; /* Center horizontally */
+  transform: translateX(-50%); /* Center the image */
+}
+
+#tori_becca {
+  height: 120px;
+  bottom: 30%; /* Bottom image */
+  left: 5%; /* Align to the left */
+}
+
+#alex_becca {
+  height: 90px;
+  bottom: -20%; /* Bottom image */
+  right: 5%; /* Align to the right */
+}
+
+.triangle-layout {
+  position: relative; /* Set position to relative for absolute positioning of children */
+  width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  margin: 0 auto; /* Center the triangle layout */
+}
+
+.triangle-layout img {
+  position: absolute; /* Position images absolutely */
 }
 
 #becca-partners {
   display: flex;
   position: absolute; /* Position the image absolutely */
-  top: 33%; /* Align to the top */
-  right: 18%; /* Align to the right */
+  top: 30%; /* Align to the top */
+  right: 13%; /* Align to the right */
   height: 75px;
   /* justify-content: space-between; */
 }
@@ -125,7 +166,7 @@ p {
   /* justify-content: space-between; */
 }
 
-/* Image styling */
+/* Image styling for partners */
 .light-up {
     /* height: 100px; */
     opacity: 0.4;
@@ -135,9 +176,11 @@ p {
 
 .light-up:hover {
     opacity: 1;
+    cursor: pointer;
 }
 
 /* Game num input styling */
+
 .input-wrapper {
   margin-left: 30px;
   width: 100px;
@@ -174,7 +217,16 @@ p {
   opacity: 1;
 }
 
+/* Server select styling */
+#server-select {
+  width: 80px; /* Adjust width as needed */
+  height: 30px; /* Adjust height as needed */
+  font-size: 14px; /* Adjust font size for better visibility */
+  padding: 5px; /* Add some padding for better aesthetics */
+}
+
 /* Predict Winner button styling */
+
 .predict-button {
   margin: 0;
   position: absolute;
@@ -200,7 +252,11 @@ p {
     background-color: #45a049;
 }
 
-/* Modal Styles */
+.button-clicked {
+  transform: translateY(3px); /* Adjust the amount of indentation */
+}
+
+/* Results Modal Styling */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -246,16 +302,13 @@ p {
   cursor: pointer;
 }
 
-/* Add a CSS class for the button when it's clicked */
-.button-clicked {
-  transform: translateY(3px); /* Adjust the amount of indentation */
-}
+
 
 /* Adjustments for mobile responsiveness */
 @media only screen and (max-width: 768px) {
-  body {
-      align-items: flex-start; /* Align items to the start of the flex container */
-  }
+  /* body { */
+      /* align-items: flex-start; Align items to the start of the flex container */
+  /* } */
 
   #side-image-left,
   #side-image-right {
@@ -276,63 +329,90 @@ p {
       width: 100%; /* Adjust container width to full width */
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: center 300px; /* Move image down by 100px */
       background-color: azure;
+      display: flex;
+      flex-direction: column; /* Stack children vertically */
+      align-items: center; /* Center all children horizontally */
+      gap: 0px; /* Add space between each child */
   }
 
   .input-wrapper {
-    margin-top: 40px;
-    margin-left: 0px;
-    text-align: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center contents horizontally */
+    justify-content: center; /* Center contents vertically if needed */
     width: 200px;
+    margin: 5px auto; 
   }
 
   #start-instructions {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 0px;
     margin-right: 0px;
   } 
   
+  /* Players */
+
   #becca {
-    top: 30%; /* Align to the top */
-    right: 20%; /* Align to the right */
+    height: 90px;
+    /* width: 150px; */
+    /* position: absolute; Position the image absolutely */
+    /* top: 15%; Align to the top */
+    /* right: 30%; Align to the right */
   }
 
   #julianna {
-    top: 50%; /* Align to the top */
-    left: 30%; /* Align to the right */
+    height: 90px;
+    /* width: 100px; */
+    /* position: absolute; Position the image absolutely */
+    /* top: 60%; Align to the top */
+    /* left: 28%; Align to the right */
   }
 
-  #becca-partners {
-    top: 45%; /* Align to the top */
-    right: 7%; /* Align to the right */
-    height: 55px;
+  /* Partners */
+
+  #taylor_julianna {
+    height: 40px;
+    /* top: 0; Top image */
+    /* left: 50%; Center horizontally */
+    /* transform: translateX(-50%); Center the image */
   }
 
-  #julianna-partners {
-    top: 47%; /* Align to the top */
-    left: 5%; /* Align to the right */
-    height: 55px;
+  #tori_julianna {
+    height: 40px;
+    /* bottom: 0; Bottom image */
+    /* left: 0; Align to the left */
   }
 
-  #becca-serve {
-    top: 35%; /* Align to the top */
-    right: 35%; /* Align to the right */
+  #alex_julianna {
+    height: 20px;
+    /* bottom: 20%; Bottom image */
+    /* right: -15%; Align to the right */
   }
 
-  #julianna-serve {
-    top: 55%; /* Align to the top */
-    left: 33%; /* Align to the right */
+  #taylor_becca {
+    height: 40px;
+    /* top: 50%; /* Top image */
+    /* left: 25%; Center horizontally */
+    /* transform: translateX(-50%); Center the image */ */
   }
 
+  #tori_becca {
+    height: 40px;
+    /* bottom: 30%; Bottom image */
+    /* left: 5%; Align to the left */
+  }
+
+  #alex_becca {
+    height: 20px;
+    /* bottom: -20%; Bottom image */
+    /* right: 5%; Align to the right */
+  }
+  
   .predict-button {
-    top: 70%;
+    top: 75%;
     left: 50%;
   }
 
