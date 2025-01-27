@@ -46,19 +46,23 @@
                 <button id="predict" onclick="predict()">Predict Winner</button> 
             </div>
 
-            <img id="becca" src="static/images/becca4.png" class="player"/>
-            <img id="julianna" src="static/images/julianna.png" class="player"/>
+            <div id="court-container">
+                <img id="court" src="static/images/court-removebg-preview.png"/>
 
-            <div id="becca-partners" class="triangle-layout">
-                <img src="static/images/tori.png" id="tori_becca" class="player light-up"/>
-                <img src="static/images/alex.png" id="alex_becca" class="player light-up"/>
-                <img src="static/images/taylor2.png" id="taylor_becca" class="player light-up"/>
-            </div>
-            
-            <div id="julianna-partners" class="triangle-layout">
-                <img src="static/images/tori.png" id="tori_julianna" class="player light-up"/>
-                <img src="static/images/alex.png" id="alex_julianna" class="player light-up"/>
-                <img src="static/images/taylor2.png" id="taylor_julianna" class="player light-up"/>
+                <img id="becca" src="static/images/becca4.png" style="--x: 50%; --y: 70%;" class="player"/>
+                <img id="julianna" src="static/images/julianna.png" class="player"/>
+    
+                <div id="becca-partners" class="triangle-layout">
+                    <img src="static/images/tori.png" id="tori_becca" class="player light-up"/>
+                    <img src="static/images/alex.png" id="alex_becca" class="player light-up"/>
+                    <img src="static/images/taylor2.png" id="taylor_becca" class="player light-up"/>
+                </div>
+                
+                <div id="julianna-partners" class="triangle-layout">
+                    <img src="static/images/tori.png" id="tori_julianna" class="player light-up"/>
+                    <img src="static/images/alex.png" id="alex_julianna" class="player light-up"/>
+                    <img src="static/images/taylor2.png" id="taylor_julianna" class="player light-up"/>
+                </div>
             </div>
 
             <div id="winnerPopUp" class="modal">

@@ -32,7 +32,7 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  width: 25%;
+  width: 10%;
   height: 100%;
   background-image: url("images/pickleball.png"); /* Set the left image */
   background-repeat: repeat; /* Repeat the image vertically */
@@ -44,7 +44,7 @@ p {
   position: absolute;
   top: 0;
   right: 0;
-  width: 25%;
+  width: 10%;
   height: 100%;
   background-image: url("images/pickleball.png"); /* Set the right image */
   background-repeat: repeat; /* Repeat the image vertically */
@@ -69,90 +69,122 @@ p {
 }
 
 .container {
-    background-image: url("images/court.jpeg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    min-height: 100vh;
-    width: 60%;
-    height: 100%;
-    max-width: 1200px;
-    position: relative; /* Set position to relative */
+  /* background-image: url("images/court.jpeg"); */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 100vh;
+  width: 80%;
+  height: 100%;
+  /* max-width: 1200px; */
+  background-color: azure;
+  position: relative; 
 }
 
-/* Players */
+/* Players and court */
+
+#court-container {
+  position: absolute;
+  width: 1200;
+  top: 0;
+  left: 100;
+  /* height: 500; */
+}
+
+#court {
+  width: 100%;
+  height: 100%;
+}
 
 #becca {
+  position: absolute;
   height: 150px;
-  /* width: 150px; */
-  position: absolute; /* Position the image absolutely */
-  top: 15%; /* Align to the top */
-  right: 30%; /* Align to the right */
+  /* width: 30%;  */
+  /* height: 30%; */
+  transform: translate(-50%, -50%);
+  left: 55%;
+  /* var(--x); Set the horizontal position using custom properties */
+  top: 25%;
+  /* var(--y); Set the vertical position using custom properties */
 }
 
 #julianna {
   height: 175px;
   /* width: 100px; */
   position: absolute; /* Position the image absolutely */
-  top: 60%; /* Align to the top */
-  left: 28%; /* Align to the right */
+  transform: translate(-50%, -50%);
+  left: 40%;
+  /* var(--x); Set the horizontal position using custom properties */
+  top: 75%;
 }
 
 /* Partners */
 
 #taylor_julianna {
   height: 120px;
+  position: absolute;
   top: 0; /* Top image */
   left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center the image */
+  transform: translate(-50%, -50%);
 }
 
 #tori_julianna {
   height: 120px;
   bottom: 0; /* Bottom image */
   left: 0; /* Align to the left */
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 
 #alex_julianna {
   height: 90px;
   bottom: 20%; /* Bottom image */
   right: -15%; /* Align to the right */
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 
 #taylor_becca {
   height: 120px;
   top: 50%; /* Top image */
   left: 25%; /* Center horizontally */
-  transform: translateX(-50%); /* Center the image */
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 
 #tori_becca {
   height: 120px;
   bottom: 30%; /* Bottom image */
   left: 5%; /* Align to the left */
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 
 #alex_becca {
   height: 90px;
   bottom: -20%; /* Bottom image */
   right: 5%; /* Align to the right */
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
-
+/* 
 .triangle-layout {
-  position: relative; /* Set position to relative for absolute positioning of children */
+  position: absolute;
   width: 200px; /* Adjust width as needed */
-  height: 200px; /* Adjust height as needed */
-  margin: 0 auto; /* Center the triangle layout */
-}
-
+  /* height: 200px; Adjust height as needed */
+  /* margin: 0 auto; Center the triangle layout */
+/* } */
+/* 
 .triangle-layout img {
   position: absolute; /* Position images absolutely */
-}
+/* } */ 
 
 #becca-partners {
-  display: flex;
+  /* display: flex; */
   position: absolute; /* Position the image absolutely */
-  top: 30%; /* Align to the top */
-  right: 13%; /* Align to the right */
+  transform: translate(-50%, -50%);
+  left: 80%;
+  /* var(--x); Set the horizontal position using custom properties */
+  top: 45%;
   height: 75px;
   /* justify-content: space-between; */
 }
@@ -329,7 +361,7 @@ p {
       width: 100%; /* Adjust container width to full width */
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center 300px; /* Move image down by 100px */
+      /* background-position: center 330px; */
       background-color: azure;
       display: flex;
       flex-direction: column; /* Stack children vertically */
@@ -353,18 +385,27 @@ p {
     margin-right: 0px;
   } 
   
-  /* Players */
+  /* Players and court */
+
+  #court-container {
+    position: absolute;
+    width: 390;
+    top: 300;
+    left: 0;
+    /* height: 500; */
+  }
 
   #becca {
-    height: 90px;
+    height: 70px;
     /* width: 150px; */
     /* position: absolute; Position the image absolutely */
-    /* top: 15%; Align to the top */
+    /* top: 350px;  */
     /* right: 30%; Align to the right */
   }
 
   #julianna {
     height: 90px;
+    /* top: 500px;  */
     /* width: 100px; */
     /* position: absolute; Position the image absolutely */
     /* top: 60%; Align to the top */
@@ -375,6 +416,7 @@ p {
 
   #taylor_julianna {
     height: 40px;
+    /* top: 0px;  */
     /* top: 0; Top image */
     /* left: 50%; Center horizontally */
     /* transform: translateX(-50%); Center the image */
@@ -382,37 +424,42 @@ p {
 
   #tori_julianna {
     height: 40px;
+    /* top: 350px;  */
     /* bottom: 0; Bottom image */
     /* left: 0; Align to the left */
   }
 
   #alex_julianna {
     height: 20px;
+    /* top: 350px;  */
     /* bottom: 20%; Bottom image */
     /* right: -15%; Align to the right */
   }
 
   #taylor_becca {
     height: 40px;
+    /* top: 350px;  */
     /* top: 50%; /* Top image */
     /* left: 25%; Center horizontally */
-    /* transform: translateX(-50%); Center the image */ */
+    /* transform: translateX(-50%); Center the image */ 
   }
 
   #tori_becca {
     height: 40px;
+    /* top: 350px;  */
     /* bottom: 30%; Bottom image */
     /* left: 5%; Align to the left */
   }
 
   #alex_becca {
     height: 20px;
+    /* top: 350px;  */
     /* bottom: -20%; Bottom image */
     /* right: 5%; Align to the right */
   }
   
   .predict-button {
-    top: 75%;
+    top: 80%;
     left: 50%;
   }
 
