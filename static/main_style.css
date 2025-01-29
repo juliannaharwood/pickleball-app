@@ -63,12 +63,7 @@ p {
 
 /* Main Components */
 
-#start-instructions {
-  margin-left: 30px;
-  font-weight: 900;
-}
-
-.container {
+#container {
   /* background-image: url("images/court.jpeg"); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -77,133 +72,69 @@ p {
   height: 100%;
   /* max-width: 1200px; */
   background-color: azure;
-  position: relative; 
+  position: absolute; 
 }
 
-/* Players and court */
-
-#court-container {
-  position: absolute;
-  width: 1200;
-  top: 0;
-  left: 100;
-  /* height: 500; */
+#start-instructions {
+  margin-left: 30px;
+  font-weight: 900;
 }
 
-#court {
-  width: 100%;
-  height: 100%;
-}
+/* Inputs */
 
-#becca {
-  position: absolute;
-  height: 150px;
-  /* width: 30%;  */
-  /* height: 30%; */
-  transform: translate(-50%, -50%);
-  left: 55%;
-  /* var(--x); Set the horizontal position using custom properties */
-  top: 25%;
-  /* var(--y); Set the vertical position using custom properties */
-}
-
-#julianna {
-  height: 175px;
-  /* width: 100px; */
-  position: absolute; /* Position the image absolutely */
-  transform: translate(-50%, -50%);
-  left: 40%;
-  /* var(--x); Set the horizontal position using custom properties */
-  top: 75%;
-}
-
-/* Partners */
-
-#taylor_julianna {
-  height: 120px;
-  position: absolute;
-  top: 0; /* Top image */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%);
-}
-
-#tori_julianna {
-  height: 120px;
-  bottom: 0; /* Bottom image */
-  left: 0; /* Align to the left */
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-#alex_julianna {
-  height: 90px;
-  bottom: 20%; /* Bottom image */
-  right: -15%; /* Align to the right */
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-#taylor_becca {
-  height: 120px;
-  top: 50%; /* Top image */
-  left: 25%; /* Center horizontally */
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-#tori_becca {
-  height: 120px;
-  bottom: 30%; /* Bottom image */
-  left: 5%; /* Align to the left */
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-#alex_becca {
-  height: 90px;
-  bottom: -20%; /* Bottom image */
-  right: 5%; /* Align to the right */
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-/* 
-.triangle-layout {
-  position: absolute;
-  width: 200px; /* Adjust width as needed */
-  /* height: 200px; Adjust height as needed */
-  /* margin: 0 auto; Center the triangle layout */
-/* } */
-/* 
-.triangle-layout img {
-  position: absolute; /* Position images absolutely */
-/* } */ 
-
-#becca-partners {
-  /* display: flex; */
-  position: absolute; /* Position the image absolutely */
-  transform: translate(-50%, -50%);
-  left: 80%;
-  /* var(--x); Set the horizontal position using custom properties */
-  top: 45%;
-  height: 75px;
-  /* justify-content: space-between; */
-}
-
-#julianna-partners {
+#inputs {
   display: flex;
-  position: absolute; /* Position the image absolutely */
-  top: 53%; /* Align to the top */
-  left: 15%; /* Align to the right */
-  height: 75px;
-  /* justify-content: space-between; */
+  gap: 20px; /* Adds spacing between columns */
+  align-items: flex-start; /* Aligns items at the top */
 }
 
-/* Image styling for partners */
+.input-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Spacing between input elements */
+  flex: .17; 
+}
+
+.teams-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Spacing between team sections */
+  flex: .83;
+  align-items: center;
+}
+
+/* Teams and players */
+
+.team-label {
+  left: 50%;
+  align-items: center;
+  /* color: #ed6fbf; */
+  font-size: 28px;
+  margin-bottom: 5px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+#team_1, #team_2 {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 10px; */
+}
+
+.player {
+  /* width: 100px; Adjust size as needed */
+  height: 170px;
+}
+
+#alex_1, #alex_2 {
+  height: 140px;
+}
+
+/* Image styling for players */
 .light-up {
     /* height: 100px; */
     opacity: 0.4;
-    max-width: 100px;
-    margin: 5px 5px 5px;
+    /* margin: 5px 5px 5px; */
 }
 
 .light-up:hover {
@@ -213,9 +144,13 @@ p {
 
 /* Game num input styling */
 
+.input-wrapper label {
+  font-size: 20px;
+}
+
 .input-wrapper {
   margin-left: 30px;
-  width: 100px;
+  width: 200px;
 }
 
 .slider {
@@ -251,27 +186,32 @@ p {
 
 /* Server select styling */
 #server-select {
-  width: 80px; /* Adjust width as needed */
-  height: 30px; /* Adjust height as needed */
-  font-size: 14px; /* Adjust font size for better visibility */
-  padding: 5px; /* Add some padding for better aesthetics */
+  width: 85px; 
+  height: 35px; 
+  font-size: 16px; 
+  padding: 5px; 
 }
 
 /* Predict Winner button styling */
 
 .predict-button {
-  margin: 0;
+  /* margin: 0; */
   position: absolute;
-  top: 95%;
+  /* top: 95%; */
   left: 50%;
-  -ms-transform: translate(-50%, -50%);
+  /* -ms-transform: translate(-50%, -50%); */
   transform: translate(-50%, -50%);
+  margin-top: 7%;
+}
+
+.button-clicked {
+  transform: translateY(3px); /* Adjust the amount of indentation */
 }
 
 #predict {
     font-family: inherit;
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 14px 24px;
+    font-size: 20px;
     background-color: #38b649;
     color: white;
     border: none;
@@ -284,11 +224,8 @@ p {
     background-color: #45a049;
 }
 
-.button-clicked {
-  transform: translateY(3px); /* Adjust the amount of indentation */
-}
-
 /* Results Modal Styling */
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -334,10 +271,8 @@ p {
   cursor: pointer;
 }
 
-
-
 /* Adjustments for mobile responsiveness */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1100px) {
   /* body { */
       /* align-items: flex-start; Align items to the start of the flex container */
   /* } */
@@ -357,7 +292,7 @@ p {
     color:rgb(235, 73, 73)
   }
 
-  .container {
+  #container {
       width: 100%; /* Adjust container width to full width */
       background-size: contain;
       background-repeat: no-repeat;
@@ -385,82 +320,63 @@ p {
     margin-right: 0px;
   } 
   
-  /* Players and court */
-
-  #court-container {
-    position: absolute;
-    width: 390;
-    top: 300;
-    left: 0;
-    /* height: 500; */
+  #inputs {
+    flex-direction: column;
+    align-items: center; /* Center content */
   }
 
-  #becca {
-    height: 70px;
-    /* width: 150px; */
-    /* position: absolute; Position the image absolutely */
-    /* top: 350px;  */
-    /* right: 30%; Align to the right */
+  .input-wrapper label {
+    font-size: 16px;
   }
 
-  #julianna {
-    height: 90px;
-    /* top: 500px;  */
-    /* width: 100px; */
-    /* position: absolute; Position the image absolutely */
-    /* top: 60%; Align to the top */
-    /* left: 28%; Align to the right */
+  .input-column, .teams-column {
+    flex: 1; /* Both columns take full width */
+    width: 100%; /* Ensure they stretch across the screen */
+    gap: 0px;
   }
 
-  /* Partners */
-
-  #taylor_julianna {
-    height: 40px;
-    /* top: 0px;  */
-    /* top: 0; Top image */
-    /* left: 50%; Center horizontally */
-    /* transform: translateX(-50%); Center the image */
+  #team_1, #team_2 {
+    justify-content: center; /* Center images */
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    height: auto;
   }
 
-  #tori_julianna {
-    height: 40px;
-    /* top: 350px;  */
-    /* bottom: 0; Bottom image */
-    /* left: 0; Align to the left */
-  }
-
-  #alex_julianna {
-    height: 20px;
-    /* top: 350px;  */
-    /* bottom: 20%; Bottom image */
-    /* right: -15%; Align to the right */
-  }
-
-  #taylor_becca {
-    height: 40px;
-    /* top: 350px;  */
-    /* top: 50%; /* Top image */
-    /* left: 25%; Center horizontally */
-    /* transform: translateX(-50%); Center the image */ 
-  }
-
-  #tori_becca {
-    height: 40px;
-    /* top: 350px;  */
-    /* bottom: 30%; Bottom image */
-    /* left: 5%; Align to the left */
-  }
-
-  #alex_becca {
-    height: 20px;
-    /* top: 350px;  */
-    /* bottom: -20%; Bottom image */
-    /* right: 5%; Align to the right */
+  .team-label {
+    /* color: #ed6fbf; */
+    font-size: 18px;
   }
   
+  #team_2_label{
+    padding-top: 28px;
+  }
+
+  .player {
+    height: 80px;
+    margin: 0;
+  }
+
+  #alex_1, #alex_2 {
+    height: 60px;
+  }
+
+  #server-select {
+    width: 80px; /* Adjust width as needed */
+    height: 30px; /* Adjust height as needed */
+    font-size: 14px; /* Adjust font size for better visibility */
+    padding: 5px; /* Add some padding for better aesthetics */
+  }
+
   .predict-button {
-    top: 80%;
+    top: 65%;
     left: 50%;
   }
+
+  #predict {
+    padding: 10px 20px;
+    font-size: 18px;
+}
 
 }

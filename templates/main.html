@@ -21,48 +21,53 @@
         <div id="side-image-left"></div>
         <div id="side-image-right"></div>
 
-        <div class="container">
+        <div id="container">
             <h1>Pickle Predictor</h1>
             <!-- <p id="sub-heading">Make selections below and see who will win!</p> -->
-            <p id="start-instructions">Select partners to play doubles or leave empty for singles.</p>
+            <!-- <p id="start-instructions">Select partners to play doubles or leave empty for singles.</p> -->
 
-            <div class="input-wrapper">
-                <label for="game-session-num">Select what number game this is in the session</label>
-                <div class="slider">
-                    <input type="range" id="game-session-num" min="1" max="5" value="1">
-                    <div id="game-session-num-input"></div>
+            <div id="inputs">
+                <div class="input-column">
+                    <div class="input-wrapper">
+                        <label for="game-session-num">Select what number game this is in the session</label>
+                        <div class="slider">
+                            <input type="range" id="game-session-num" min="1" max="5" value="1">
+                            <div id="game-session-num-input"></div>
+                        </div>
+                    </div>
+            
+                    <div class="input-wrapper">
+                        <label for="server-select">Select who serves first:</label>
+                        <select id="server-select">
+                            <option value="team_1">Team 1</option>
+                            <option value="team_2">Team 2</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-
-            <div class="input-wrapper">
-                <label for="server-select">Select who serves first:</label>
-                <select id="server-select">
-                    <option value="becca">Becca</option>
-                    <option value="julianna">Julianna</option>
-                </select>
-            </div>
+            
+                <div class="teams-column">
+                    <p id="team_1_label" class="team-label">Team 1</p>
+                    <div id="team_1">
+                        <img src="static/images/becca4.png" id="becca_1"  class="player light-up team_1"/>
+                        <img src="static/images/tori.png" id="tori_1" class="player light-up team_1"/>
+                        <img src="static/images/alex.png" id="alex_1" class="player light-up team_1"/>
+                        <img src="static/images/taylor2.png" id="taylor_1" class="player light-up team_1"/>
+                        <img src="static/images/julianna.png" id="julianna_1"  class="player light-up team_1"/>
+                    </div>
+                    
+                    <p id="team_2_label" class="team-label">Team 2</p>
+                    <div id="team_2">
+                        <img src="static/images/becca4.png" id="becca_2"  class="player light-up team_2"/>
+                        <img src="static/images/tori.png" id="tori_2" class="player light-up team_2"/>
+                        <img src="static/images/alex.png" id="alex_2" class="player light-up team_2"/>
+                        <img src="static/images/taylor2.png" id="taylor_2" class="player light-up team_2"/>
+                        <img src="static/images/julianna.png" id="julianna_2"  class="player light-up team_2"/>
+                    </div>
+                </div>
+            </div>            
             
             <div class="predict-button">
                 <button id="predict" onclick="predict()">Predict Winner</button> 
-            </div>
-
-            <div id="court-container">
-                <img id="court" src="static/images/court-removebg-preview.png"/>
-
-                <img id="becca" src="static/images/becca4.png" style="--x: 50%; --y: 70%;" class="player"/>
-                <img id="julianna" src="static/images/julianna.png" class="player"/>
-    
-                <div id="becca-partners" class="triangle-layout">
-                    <img src="static/images/tori.png" id="tori_becca" class="player light-up"/>
-                    <img src="static/images/alex.png" id="alex_becca" class="player light-up"/>
-                    <img src="static/images/taylor2.png" id="taylor_becca" class="player light-up"/>
-                </div>
-                
-                <div id="julianna-partners" class="triangle-layout">
-                    <img src="static/images/tori.png" id="tori_julianna" class="player light-up"/>
-                    <img src="static/images/alex.png" id="alex_julianna" class="player light-up"/>
-                    <img src="static/images/taylor2.png" id="taylor_julianna" class="player light-up"/>
-                </div>
             </div>
 
             <div id="winnerPopUp" class="modal">
@@ -79,11 +84,11 @@
             // Partner selection
 
             // Image opacity change 
-            var becca_partner_images = document.querySelectorAll("#becca-partners .light-up");
-            var julianna_partner_images = document.querySelectorAll("#julianna-partners .light-up");
+            var team_1_players = document.querySelectorAll(".team_1");
+            var team_2_players = document.querySelectorAll(".team_2");
 
             // Add click event listener to each image
-            julianna_partner_images.forEach(function(image) {
+            team_1_players.forEach(function(image) {
                 image.addEventListener("click", function() {
                     // Toggle opacity between .5 and 1 for the clicked image
                     var currentOpacity = parseFloat(image.style.opacity);
@@ -92,16 +97,16 @@
                     // Get the ID of the clicked image
                     var clickedImageId = image.id;
 
-                    // Set opacity to 0.5 for all images except the clicked one
-                    julianna_partner_images.forEach(function(img) {
-                        if (img.id !== clickedImageId) {
-                            img.style.opacity = 0.4;
-                        }
-                    });
+                    // // Set opacity to 0.5 for all images except the clicked one
+                    // julianna_partner_images.forEach(function(img) {
+                    //     if (img.id !== clickedImageId) {
+                    //         img.style.opacity = 0.4;
+                    //     }
+                    // });
                 });
             });
 
-            becca_partner_images.forEach(function(image) {
+            team_2_players.forEach(function(image) {
                 image.addEventListener("click", function() {
                     // Toggle opacity between .5 and 1 for the clicked image
                     var currentOpacity = parseFloat(image.style.opacity);
@@ -110,17 +115,16 @@
                     // Get the ID of the clicked image
                     var clickedImageId = image.id;
 
-                    // Set opacity to 0.5 for all images except the clicked one
-                    becca_partner_images.forEach(function(img) {
-                        if (img.id !== clickedImageId) {
-                            img.style.opacity = 0.4;
-                        }
-                    });
+                    // // Set opacity to 0.5 for all images except the clicked one
+                    // becca_partner_images.forEach(function(img) {
+                    //     if (img.id !== clickedImageId) {
+                    //         img.style.opacity = 0.4;
+                    //     }
+                    // });
                 });
             });
 
             // Game Num Slider 
-
             var slider = document.getElementById("game-session-num");
             var output = document.getElementById("game-session-num-input");
             output.innerHTML = slider.value; // Display the default slider value
@@ -149,18 +153,18 @@
 
             // Main prediction function
             function predict() {
-                // Get the ID of becca's partner (lit up image)
-                var beccaPartnerID = "";
-                var beccaPartner = document.querySelector("#becca-partners .light-up[style='opacity: 1;']");
-                if (beccaPartner) {
-                    beccaPartnerID = beccaPartner.id;
+                // Get the IDs of team 1 (lit up images)
+                var team_1_ids = "";
+                var team_1_selected = document.querySelectorAll("#team_1 .light-up[style='opacity: 1;']");
+                if (team_1_selected) {
+                    var team_1_ids = Array.from(team_1_selected).map(image => image.id);
                 }
 
-                // Get the ID of julianna's partner (lit up image)
-                var juliannaPartnerID = "";
-                var juliannaPartner = document.querySelector("#julianna-partners .light-up[style='opacity: 1;']");
-                if (juliannaPartner) {
-                    juliannaPartnerID = juliannaPartner.id;
+                // Get the IDs of team 2 (lit up images)
+                var team_2_ids = "";
+                var team_2_selected = document.querySelectorAll("#team_2 .light-up[style='opacity: 1;']");
+                if (team_2_selected) {
+                    var team_2_ids = Array.from(team_2_selected).map(image => image.id);
                 }
 
                 // Get first server
@@ -176,8 +180,8 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ 
-                        becca_partner: beccaPartnerID, 
-                        julianna_partner: juliannaPartnerID, 
+                        team_1: team_1_ids, 
+                        team_2: team_2_ids, 
                         serve: serve,
                         game_num: gameNum
                     })

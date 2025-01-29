@@ -33,16 +33,10 @@ def pickleball_predictor():
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
-    response = run_prediction.predict_from_model('backend/models/rf.joblib', data)
 
-    if response == True:
-        result = 'Becca wins!'
-    elif response == False:
-        result = 'Julianna wins!'
-    else :
-        result = response
+    message = run_prediction.predict_from_model('backend/models/rf.joblib', data)
 
-    return jsonify({'message': result})
+    return jsonify({'message': message})
 
 if __name__ == '__main__':
     app.run(debug=True)
