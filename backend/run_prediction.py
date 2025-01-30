@@ -13,6 +13,10 @@ def predict_from_model(model_path, new_data) :
     team_1 = [player.split('_')[0] for player in team_1]
     team_2 = [player.split('_')[0] for player in team_2]
     
+    # sort so its alphabetical
+    team_1.sort()
+    team_2.sort()
+    
     # Check that the players in team_1 are distinct from the players in team_2
     if len(set(team_1) & set(team_2)) > 0:
         return "Teams cannot have the same players."
@@ -26,10 +30,10 @@ def predict_from_model(model_path, new_data) :
         return "Predictor can't decide, it's a toss up!"
 
     # check if becca and julianna are playing together
-    elif team_1.sort() == ['becca','julianna']:
+    elif team_1 == ['becca','julianna']:
         return "Team 1 wins!"
     
-    elif team_2.sort() == ['becca','julianna']:
+    elif team_2 == ['becca','julianna']:
         return "Team 2 wins!"
     
     # check which team julianna is on
