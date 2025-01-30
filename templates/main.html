@@ -11,7 +11,7 @@
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
         <link href='https://fonts.googleapis.com/css?family=Freeman' rel='stylesheet'>
-        <link rel="icon" type="image/x-icon" href="static/pickleball-small.ico">
+        <link rel="icon" type="image/x-icon" rel="noopener" target="_blank" href="static/pickleball-small.ico">
 
     </head>
 
@@ -24,10 +24,13 @@
         <div id="container">
             <h1>Pickle Predictor</h1>
             <!-- <p id="sub-heading">Make selections below and see who will win!</p> -->
-            <!-- <p id="start-instructions">Select partners to play doubles or leave empty for singles.</p> -->
+
 
             <div id="inputs">
+
                 <div class="input-column">
+                    <p id="start-instructions">Pick teams by clicking on the players and make selections below to see who wins!</p>
+
                     <div class="input-wrapper">
                         <label for="game-session-num">Select what number game this is in the session</label>
                         <div class="slider">
@@ -37,30 +40,31 @@
                     </div>
             
                     <div class="input-wrapper">
-                        <label for="server-select">Select who serves first:</label>
+                        <label for="server-select">Select who serves first</label>
                         <select id="server-select">
                             <option value="team_1">Team 1</option>
                             <option value="team_2">Team 2</option>
                         </select>
                     </div>
+
                 </div>
             
                 <div class="teams-column">
                     <p id="team_1_label" class="team-label">Team 1</p>
                     <div id="team_1">
-                        <img src="static/images/becca4.png" id="becca_1"  class="player light-up team_1"/>
+                        <img src="static/images/becca.png" id="becca_1"  class="player light-up team_1"/>
                         <img src="static/images/tori.png" id="tori_1" class="player light-up team_1"/>
                         <img src="static/images/alex.png" id="alex_1" class="player light-up team_1"/>
-                        <img src="static/images/taylor2.png" id="taylor_1" class="player light-up team_1"/>
+                        <img src="static/images/taylor.png" id="taylor_1" class="player light-up team_1"/>
                         <img src="static/images/julianna.png" id="julianna_1"  class="player light-up team_1"/>
                     </div>
                     
                     <p id="team_2_label" class="team-label">Team 2</p>
                     <div id="team_2">
-                        <img src="static/images/becca4.png" id="becca_2"  class="player light-up team_2"/>
+                        <img src="static/images/becca.png" id="becca_2"  class="player light-up team_2"/>
                         <img src="static/images/tori.png" id="tori_2" class="player light-up team_2"/>
                         <img src="static/images/alex.png" id="alex_2" class="player light-up team_2"/>
-                        <img src="static/images/taylor2.png" id="taylor_2" class="player light-up team_2"/>
+                        <img src="static/images/taylor.png" id="taylor_2" class="player light-up team_2"/>
                         <img src="static/images/julianna.png" id="julianna_2"  class="player light-up team_2"/>
                     </div>
                 </div>
@@ -68,6 +72,10 @@
             
             <div class="predict-button">
                 <button id="predict" onclick="predict()">Predict Winner</button> 
+            </div>
+
+            <div id="about">
+                <button id="about-button" onclick="openAboutPage()">about this app</button> 
             </div>
 
             <div id="winnerPopUp" class="modal">
@@ -150,6 +158,11 @@
                 }, 100); // Adjust the delay (in milliseconds) as needed
             
             });
+
+            // About button
+            function openAboutPage() {
+                window.open('static/about.html', '_blank');
+            }
 
             // Main prediction function
             function predict() {

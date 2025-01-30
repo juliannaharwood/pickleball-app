@@ -78,6 +78,7 @@ p {
 #start-instructions {
   margin-left: 30px;
   font-weight: 900;
+  /* width: 100px; */
 }
 
 /* Inputs */
@@ -124,6 +125,8 @@ p {
 .player {
   /* width: 100px; Adjust size as needed */
   height: 170px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 #alex_1, #alex_2 {
@@ -242,7 +245,7 @@ p {
 .modal-content {
   position: relative; /* Ensure children are positioned relative to the modal */
   background-color: rgb(38, 185, 218);
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto; 
   padding: 7px;
   border: 1px solid #060606;
   width: 10%; 
@@ -257,8 +260,8 @@ p {
 
 .close-button {
   position: absolute; /* Position relative to .modal-content */
-  top: 0px; /* Distance from the top of the modal */
-  right: 7px; /* Distance from the right edge of the modal */
+  top: 0px; 
+  right: 7px;
   color: #000000;
   font-size: 28px;
   font-weight: bold;
@@ -269,6 +272,14 @@ p {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+#about {
+  top: 92%;
+  left: 85%;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 
 /* Adjustments for mobile responsiveness */
@@ -301,7 +312,7 @@ p {
       display: flex;
       flex-direction: column; /* Stack children vertically */
       align-items: center; /* Center all children horizontally */
-      gap: 0px; /* Add space between each child */
+      /* gap: 0px; Add space between each child */
   }
 
   .input-wrapper {
@@ -322,11 +333,12 @@ p {
   
   #inputs {
     flex-direction: column;
-    align-items: center; /* Center content */
+    align-items: center; 
   }
 
   .input-wrapper label {
     font-size: 16px;
+    text-align: center; 
   }
 
   .input-column, .teams-column {
@@ -336,7 +348,7 @@ p {
   }
 
   #team_1, #team_2 {
-    justify-content: center; /* Center images */
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     margin: 0;
@@ -363,20 +375,47 @@ p {
   }
 
   #server-select {
-    width: 80px; /* Adjust width as needed */
-    height: 30px; /* Adjust height as needed */
-    font-size: 14px; /* Adjust font size for better visibility */
-    padding: 5px; /* Add some padding for better aesthetics */
+    width: 80px; 
+    height: 30px; 
+    font-size: 14px; 
+    padding: 5px;
   }
 
   .predict-button {
-    top: 65%;
+    top: 85%;
     left: 50%;
   }
 
   #predict {
     padding: 10px 20px;
     font-size: 18px;
-}
+  }
+
+  .modal-content {
+      width: 80%; /* Adjust width for mobile */
+      max-width: 300px; /* Prevent it from being too wide */
+      top: 35%;
+      text-align: center; /* Center text */
+  }
+
+  .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: black;
+  }
+
+  #winnerText {
+      font-size: 18px; /* Readable text */
+      font-weight: bold;
+      margin-top: 10px;
+  }
+
+  #about {
+    top: 95%;
+    left: 50%
+  }
 
 }
