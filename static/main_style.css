@@ -277,9 +277,12 @@ p {
 #about {
   top: 92%;
   left: 85%;
-  cursor: pointer;
   position: absolute;
   transform: translate(-50%, -50%);
+}
+
+#about-button {
+  cursor: pointer;
 }
 
 /* Adjustments for mobile responsiveness */
